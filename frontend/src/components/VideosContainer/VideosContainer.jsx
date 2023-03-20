@@ -1,10 +1,15 @@
 import s from "./VideosContainer.module.scss";
-import { data } from "../../data/data";
 import Video from "../Video/Video";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { initial_req } from "../../requests/initial";
 
 export default function VideosContainer() {
   const [sliceCnt, setSliceCnt] = useState(6);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    initial_req(setData);
+  }, []);
 
   const show_more = () => setSliceCnt((prev) => prev + 3);
 
@@ -15,7 +20,7 @@ export default function VideosContainer() {
           <Video key={e.id} {...e} />
         ))}
       </div>
-      <button onClick={show_more}>Show more</button>
+      {sliceCnt < data.length && <button onClick={show_more}>Show more</button>}
     </div>
   );
 }
