@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Romeo Must Die",
+        "author": "Cirillo Moroney",
+        "date": "8/15/2022"
+    },
+    {
+        "id": 2,
+        "title": "Charley Varrick",
+        "author": "Igor Tayloe",
+        "date": "3/19/2023"
+    },
+    {
+        "id": 3,
+        "title": "Begin Again",
+        "author": "See Craw",
+        "date": "8/6/2022"
+    },
+    {
+        "id": 4,
+        "title": "North Star, The",
+        "author": "Burnard Geraldi",
+        "date": "3/15/2023"
+    },
+    {
+        "id": 5,
+        "title": "Money (L'argent)",
+        "author": "Cordelia Dorie",
+        "date": "12/19/2022"
+    },
+    {
+        "id": 6,
+        "title": "Second Jungle Book: Mowgli & Baloo, The",
+        "author": "Roland Brevetor",
+        "date": "5/24/2022"
+    }
+]
