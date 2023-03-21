@@ -1,26 +1,28 @@
-import s from "./Modal.module.scss";
-import { Context } from "../../context";
-import { useContext } from "react";
-import ReactPlayer from "react-player/youtube";
+import s from './Modal.module.scss';
+import { Context } from '../../context';
+import { useContext } from 'react';
+import ReactPlayer from 'react-player/youtube';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 export default function Modal() {
-  const { videoSource, setSource, modal, setModal } = useContext(Context);
+	const { videoSource, setSource, modal, setModal } = useContext(Context);
 
-  const display = modal ? { display: "flex" } : { display: "none" };
+	document.body.style.overflow = modal ? 'hidden' : 'auto';
 
-  const close_window = () => {
-    setModal(false);
-    setSource("");
-  };
+	const display = modal ? { display: 'flex' } : { display: 'none' };
 
-  return (
-    <div className={s.modal} style={display}>
-      <div className={s.modal_content}>
-        <ReactPlayer url={videoSource} width={640} />
-        <button className={s.close_icon} onClick={close_window}>
-          X
-        </button>
-      </div>
-    </div>
-  );
+	const close_window = () => {
+		setModal(false);
+		setSource('');
+	};
+
+	return (
+		<div className={s.modal} style={display}>
+			<div className={s.modal_content}>
+				<ReactPlayer url={videoSource} width={640} />
+
+				<AiOutlineCloseCircle className={s.close_icon} onClick={close_window} />
+			</div>
+		</div>
+	);
 }
