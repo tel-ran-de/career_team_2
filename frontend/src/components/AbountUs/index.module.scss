@@ -1,0 +1,72 @@
+.abount_us {
+	margin-top: 100px;
+	padding-bottom: 50px;
+	background-color: #efeeea;
+}
+
+.abount_us_block h1 {
+	text-align: center;
+	padding: 100px 0;
+	font-weight: 600;
+	font-size: 40px;
+}
+
+.abount_us_container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.abount_us_info {
+	margin-top: 25px;
+}
+
+.abount_us_info div {
+	margin: 20px 0;
+}
+
+.QRcode img {
+	width: 300px;
+}
+
+.logo img {
+	width: 100px;
+	height: 100px;
+}
+
+.abount_us_info button {
+	padding: 10px 15px;
+	a {
+		text-decoration: none;
+		color: white;
+	}
+}
+
+// .QRcode {
+// 	display: flex;
+// 	justify-content: center;
+
+// 	.wrapper {
+// 		display: flex;
+// 		flex-direction: column;
+// 		justify-content: center;
+// 		align-items: center;
+
+// 		img {
+// 			width: 300px;
+// 		}
+// 		button {
+// 			margin-top: 20px;
+// 			border: 1px solid black;
+// 			border-radius: 16px;
+// 			padding: 10px;
+// 			transition: 0.2s;
+// 			&:hover {
+// 				transform: scale(1.03);
+// 			}
+// 			a {
+// 				text-decoration: none;
+// 				color: rgb(5, 5, 5);
+// 			}
+// 		}
+// 	}
+// }
