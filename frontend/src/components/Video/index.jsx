@@ -1,15 +1,15 @@
 import s from "./index.module.scss";
 import { Context } from "../../context";
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import { FaPlay } from "react-icons/fa";
 
 export default function Video({ source }) {
   const { setSource, setModal } = useContext(Context);
 
-  const openVideo = () => {
+  const openVideo = useCallback(() => {
     setSource(source);
     setModal(true);
-  };
+  }, [setModal, setSource, source]);
 
   return (
     <div className={s.video} onClick={openVideo}>

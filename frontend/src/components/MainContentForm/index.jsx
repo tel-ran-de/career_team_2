@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import Button from "../../UI/Button";
 import s from "./index.module.scss";
 import { Context } from "../../context";
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 
 export default function MainContentForm() {
   const [showMore1, setShowMore1] = useState(false);
   const [showMore2, setShowMore2] = useState(false);
   const { search } = useContext(Context);
 
-  const checkAll = () => {
+  const checkAll = useCallback(() => {
     document
       .querySelectorAll("input[type=checkbox]")
       .forEach((e) => (e.checked = true));
-  };
+  }, []);
 
-  const checkNone = () => {
+  const checkNone = useCallback(() => {
     document
       .querySelectorAll("input[type=checkbox]")
       .forEach((e) => (e.checked = false));
-  };
+  }, []);
 
   return (
     <div>

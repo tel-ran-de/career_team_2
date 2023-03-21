@@ -5,14 +5,14 @@ import MainContent from "./components/MainContent";
 import AbountUs from "./components/AbountUs";
 import Footer from "./components/Footer";
 import { Context } from "./context";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { sendData } from "./requests/sendData";
 
 export default function App() {
   const [videoSource, setSource] = useState("");
   const [modal, setModal] = useState(false);
 
-  const search = (e) => {
+  const search = useCallback((e) => {
     e.preventDefault();
     const data = {
       accounting: e.target.accounting.checked,
@@ -34,7 +34,7 @@ export default function App() {
     };
     console.log(data);
     // sendData(data);
-  };
+  }, []);
 
   return (
     <>
