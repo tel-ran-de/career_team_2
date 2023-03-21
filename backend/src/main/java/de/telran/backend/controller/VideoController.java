@@ -1,5 +1,6 @@
 package de.telran.backend.controller;
 
+import de.telran.backend.entity.SearchCategory;
 import de.telran.backend.entity.Video;
 import de.telran.backend.repository.CategoryRepository;
 import de.telran.backend.repository.CategoryTypeRepository;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -30,12 +32,20 @@ public class VideoController {
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
 
-    @GetMapping
+    @PostMapping
     public List<Video> getAllVideo() {
         List<Video> all = new ArrayList<>();
         videoRepository.findAll().forEach(all::add);
         log.info(all.toString());
         return all;
+    }
+
+    @GetMapping("/category")
+    public List<SearchCategory> getAllCategories(){
+        List<SearchCategory> allCategories = new ArrayList<>();
+        categoryRepository.allCategories().forEach(allCategories::add);
+        log.info(allCategories.toString());
+        return allCategories;
     }
     
 }
