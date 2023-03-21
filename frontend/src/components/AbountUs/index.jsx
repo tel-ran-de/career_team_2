@@ -1,6 +1,7 @@
 import Button from '../../UI/Button';
 import s from './index.module.scss';
 import logo from '../../UI/Logo/logo.png';
+import qr from '../../UI/QrCode/qr.png';
 import Socials from '../../UI/Socials';
 
 export default function AbountUs() {
@@ -23,7 +24,7 @@ export default function AbountUs() {
 					</div>
 
 					<div className={s.QRcode}>
-						<img src="qr.png" alt="" />
+						<img src={qr} alt="QrCode" />
 					</div>
 				</div>
 			</div>

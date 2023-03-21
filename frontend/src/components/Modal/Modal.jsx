@@ -11,7 +11,7 @@ export default function Modal() {
 
 	const display = modal ? { display: 'flex' } : { display: 'none' };
 
-	const close_window = () => {
+	const closeWindow = () => {
 		setModal(false);
 		setSource('');
 	};
@@ -21,7 +21,7 @@ export default function Modal() {
 			<div className={s.modal_content}>
 				<ReactPlayer url={videoSource} width={640} />
 
-				<AiOutlineCloseCircle className={s.close_icon} onClick={close_window} />
+				<AiOutlineCloseCircle className={s.close_icon} onClick={closeWindow} />
 			</div>
 		</div>
 	);
