@@ -1,5 +1,5 @@
 export const sendData = (data, callback) => {
-  fetch("/api/filter", {
+  fetch("/video", {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",

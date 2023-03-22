@@ -1,7 +1,7 @@
 .form {
 	display: flex;
 	justify-content: center;
-	align-items: start;
+	// align-items: start; // error в консоле. может align-items: left; ??
 }
 
 .form input {

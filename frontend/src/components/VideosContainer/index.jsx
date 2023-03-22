@@ -1,29 +1,25 @@
 import s from "./index.module.scss";
 import Video from "../Video";
-import { useState, useEffect } from "react";
-import { initialReq } from "../../requests/initial";
+import { Context } from "../../context";
+import { useState, useContext } from "react";
 import Button from "../../UI/Button";
 
 export default function VideosContainer() {
   const [sliceCnt, setSliceCnt] = useState(6);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    initialReq(setData);
-  }, []);
+  const { videos } = useContext(Context);
 
   const showMore = () => setSliceCnt((prev) => prev + 3);
 
   return (
     <div className={s.videos_container}>
       <div className={s.wrapper}>
-        {data.slice(0, sliceCnt).map((e) => (
-          <Video key={e.id} {...e} />
+        {videos.slice(0, sliceCnt).map((e) => (
+          <Video key={e.videoId} {...e} />
         ))}
       </div>
 
       <div className={s.button}>
-        {sliceCnt < data.length && (
+        {sliceCnt < videos.length && (
           <Button onClick={showMore}>Show more</Button>
         )}
       </div>
