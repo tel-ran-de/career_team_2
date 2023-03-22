@@ -1,21 +1,18 @@
 package de.telran.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
 @Table(name="category")
 @Data
 @NoArgsConstructor
-public class SearchCategory {
+public class Category {
     @Id
-    @Column(name = "category_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long categoryId;
 
@@ -23,14 +20,12 @@ public class SearchCategory {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_type_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "category_type_id")
     private CategoryType categoryType;
 
 
-    public SearchCategory(String name, CategoryType categoryType) {
+    public Category(String name, CategoryType categoryType) {
         this.name = name;
         this.categoryType = categoryType;
     }

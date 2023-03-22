@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.aop.target.LazyInitTargetSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="category_type")
@@ -11,15 +15,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CategoryType {
     @Id
-    @Column(name = "category_type_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long categoryTypeId;
+    private long Id;
 
     @NotBlank(message = "Category type name is mandatory")
     @Column(nullable = false)
     private String name;
 
+
     public CategoryType(String name) {
         this.name = name;
     }
+
 }

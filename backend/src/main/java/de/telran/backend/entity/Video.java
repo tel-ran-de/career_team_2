@@ -29,7 +29,8 @@ public class Video {
 
     private Date data;
 
-    private int length;
+    @Column(name = "video_length", nullable = true)
+    private int video_length;
 
 //    @NotBlank(message = "Preview is mandatory")
     private byte[] preview;
@@ -39,7 +40,7 @@ public class Video {
     @JoinTable(name = "video_category",
             joinColumns = { @JoinColumn(name = "video_id") },
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
-    private Set<SearchCategory> categories = new HashSet<SearchCategory>();
+    private Set<Category> categories = new HashSet<Category>();
 
 
     public Video(String videoURL, String name, byte[] preview) {
@@ -48,11 +49,11 @@ public class Video {
         this.preview = preview;
     }
 
-    public Video(String videoURL, String name, Date data, int length, byte[] preview, Set<SearchCategory> categories) {
+    public Video(String videoURL, String name, Date data, int video_length, byte[] preview, Set<Category> categories) {
         this.videoURL = videoURL;
         this.name = name;
         this.data = data;
-        this.length = length;
+        this.video_length = video_length;
         this.preview = preview;
         this.categories = categories;
     }

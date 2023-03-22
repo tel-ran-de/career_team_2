@@ -1,6 +1,7 @@
 package de.telran.backend.controller;
 
-import de.telran.backend.entity.SearchCategory;
+import de.telran.backend.entity.Category;
+import de.telran.backend.entity.CategoryType;
 import de.telran.backend.entity.Video;
 import de.telran.backend.repository.CategoryRepository;
 import de.telran.backend.repository.CategoryTypeRepository;
@@ -32,8 +33,8 @@ public class VideoController {
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
 
-    @PostMapping
-    public List<Video> getAllVideo() {
+    @PostMapping("/video")
+    public List<Video> listAllVideo() {
         List<Video> all = new ArrayList<>();
         videoRepository.findAll().forEach(all::add);
         log.info(all.toString());
@@ -41,11 +42,19 @@ public class VideoController {
     }
 
     @GetMapping("/category")
-    public List<SearchCategory> getAllCategories(){
-        List<SearchCategory> allCategories = new ArrayList<>();
-        categoryRepository.allCategories().forEach(allCategories::add);
+    public List<Category> getAllCategories(){
+        List<Category> allCategories = new ArrayList<>();
+        categoryRepository.findAll().forEach(allCategories::add);
         log.info(allCategories.toString());
         return allCategories;
     }
-    
+
+
+    @GetMapping("/category_types")
+    public List<CategoryType> getAllCategoryTypes(){
+        List<CategoryType> allCategoryTypes = new ArrayList<>();
+        categoryTypeRepository.findAll().forEach(allCategoryTypes::add);
+        log.info(allCategoryTypes.toString());
+        return allCategoryTypes;
+    }
 }
