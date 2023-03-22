@@ -33,6 +33,14 @@ public class VideoController {
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
 
+    @GetMapping("/video")
+    public List<Video> getAllVideo() {
+        List<Video> all = new ArrayList<>();
+        videoRepository.findAll().forEach(all::add);
+        log.info(all.toString());
+        return all;
+    }
+
     @PostMapping("/video")
     public List<Video> listAllVideo() {
         List<Video> all = new ArrayList<>();

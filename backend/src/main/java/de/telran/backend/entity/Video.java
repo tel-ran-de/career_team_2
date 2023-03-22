@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -30,7 +31,7 @@ public class Video {
     private Date data;
 
     @Column(name = "video_length", nullable = true)
-    private int video_length;
+    private Integer video_length;
 
 //    @NotBlank(message = "Preview is mandatory")
     private byte[] preview;
@@ -42,6 +43,11 @@ public class Video {
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
     private Set<Category> categories = new HashSet<Category>();
 
+    public Video(String videoURL, String name) {
+        this.videoURL = videoURL;
+        this.name = name;
+        this.video_length = 0;
+    }
 
     public Video(String videoURL, String name, byte[] preview) {
         this.videoURL = videoURL;
