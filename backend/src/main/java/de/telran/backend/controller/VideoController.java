@@ -44,7 +44,10 @@ public class VideoController {
     public List<Video> listAllVideo(
             @RequestParam(value = "search", defaultValue = "") String search,
             @RequestBody List<Long> filters
+//            (@RequestBody String body, Writer writer) throws IOException
     ) {
+        log.info(search);
+        log.info(filters.toString());
         List<Video> all = new ArrayList<>();
         videoRepository.findByNameContaining(search).forEach(all::add);
         log.info(all.toString());
