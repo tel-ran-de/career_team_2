@@ -2,18 +2,17 @@ package de.telran.backend.controller;
 
 import de.telran.backend.entity.Category;
 import de.telran.backend.entity.CategoryType;
+import de.telran.backend.entity.Profession;
 import de.telran.backend.entity.Video;
 import de.telran.backend.repository.CategoryRepository;
 import de.telran.backend.repository.CategoryTypeRepository;
+import de.telran.backend.repository.ProfessionRepository;
 import de.telran.backend.repository.VideoRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +41,12 @@ public class VideoController {
     }
 
     @PostMapping("/video")
-    public List<Video> listAllVideo() {
+    public List<Video> listAllVideo(
+            @RequestParam(value = "search", defaultValue = "") String search,
+            @RequestBody List<Long> filters
+    ) {
         List<Video> all = new ArrayList<>();
-        videoRepository.findAll().forEach(all::add);
+        videoRepository.findByNameContaining(search).forEach(all::add);
         log.info(all.toString());
         return all;
     }

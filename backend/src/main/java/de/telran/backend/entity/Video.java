@@ -43,6 +43,13 @@ public class Video {
             inverseJoinColumns = { @JoinColumn(name = "category_id") })
     private Set<Category> categories = new HashSet<Category>();
 
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "video_profession",
+            joinColumns = { @JoinColumn(name = "video_id") },
+            inverseJoinColumns = { @JoinColumn(name = "profession_id") })
+    private Set<Profession> professions = new HashSet<Profession>();
+
     public Video(String videoURL, String name) {
         this.videoURL = videoURL;
         this.name = name;
@@ -55,12 +62,14 @@ public class Video {
         this.preview = preview;
     }
 
-    public Video(String videoURL, String name, Date data, int video_length, byte[] preview, Set<Category> categories) {
+    public Video(String videoURL, String name, Date data, int video_length, byte[] preview, Set<Category> categories,
+                 Set<Profession> professions) {
         this.videoURL = videoURL;
         this.name = name;
         this.data = data;
         this.video_length = video_length;
         this.preview = preview;
         this.categories = categories;
+        this.professions = professions;
     }
 }
