@@ -2,10 +2,11 @@ package de.telran.backend.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Base64;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,38 +27,33 @@ public class Video {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    private Data data;
+    private Date data;
 
-    private int length;
+    @Column(name = "video_length", nullable = true)
+    private int video_length;
 
-    @NotBlank(message = "Preview is mandatory")
-    private Base64 preview;
+//    @NotBlank(message = "Preview is mandatory")
+    private byte[] preview;
 
-    @ManyToMany(cascade = {
-            CascadeType.ALL
-    })
-    @JoinTable(
-            name = "video_category_tag",
-            joinColumns = {
-                    @JoinColumn(name = "video_id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "category_id")
-            }
-    )
-    Set< Category > categories = new HashSet<Category>();
+    @NotEmpty
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "video_category",
+            joinColumns = { @JoinColumn(name = "video_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") })
+    private Set<Category> categories = new HashSet<Category>();
 
-    public Video(String videoURL, String name, Base64 preview) {
+
+    public Video(String videoURL, String name, byte[] preview) {
         this.videoURL = videoURL;
         this.name = name;
         this.preview = preview;
     }
 
-    public Video(String videoURL, String name, Data data, int length, Base64 preview, Set<Category> categories) {
+    public Video(String videoURL, String name, Date data, int video_length, byte[] preview, Set<Category> categories) {
         this.videoURL = videoURL;
         this.name = name;
         this.data = data;
-        this.length = length;
+        this.video_length = video_length;
         this.preview = preview;
         this.categories = categories;
     }
