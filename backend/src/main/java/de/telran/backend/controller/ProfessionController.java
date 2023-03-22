@@ -34,6 +34,20 @@ public class ProfessionController {
         return allProfession;
     }
 
+    @GetMapping("/search")
+    public List<Profession> searchProfessionByName(
+            @PathParam("name") String name
+    ) {
+
+        List<Profession> searchResult = new ArrayList<>();
+
+        if (name != "") {
+            searchResult = professionRepository.findByNameContains(name);
+            log.info("Found profession by name " + searchResult.toString());
+        }
+
+        return searchResult;
+    }
 
 
 }
