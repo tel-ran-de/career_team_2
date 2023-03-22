@@ -12,7 +12,7 @@ export default function Video({ source }) {
   }, [setModal, setSource, source]);
 
   return (
-    <div className={s.video} onClick={openVideo}>
+    <div className={s.video} onClick={openVideo} data-qa-id="open-video-link">
       <div className={s.play_icon}>
         <FaPlay color="red" size={46} />
       </div>
