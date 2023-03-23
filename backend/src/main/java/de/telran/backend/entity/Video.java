@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Video {
     @Id
-    @Column(name = "video_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long videoId;
 
@@ -46,7 +46,7 @@ public class Video {
     @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "video_profession",
-            joinColumns = { @JoinColumn(name = "video_id") },
+            joinColumns = { @JoinColumn(name = "id") },
             inverseJoinColumns = { @JoinColumn(name = "profession_id") })
     private Set<Profession> professions = new HashSet<Profession>();
 
