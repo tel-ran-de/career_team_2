@@ -7,15 +7,22 @@
   justify-content: center;
   width: 260px;
 
-  .categories {
+  .categories,
+  .professions {
     display: flex;
+    justify-content: center;
     align-items: center;
     width: 240px;
-    height: 120px;
+    height: 65px;
     text-align: center;
     padding: 8px 0;
     letter-spacing: 1px;
     font-size: 16px;
+  }
+
+  .professions {
+    height: 35px;
+    padding-bottom: 14px;
   }
 
   .title {

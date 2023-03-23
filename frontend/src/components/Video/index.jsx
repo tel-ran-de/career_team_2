@@ -20,8 +20,9 @@ export default function Video({ videoURL, name, categories, professions }) {
       </div>
       <p
         className={s.categories}
-      >{`${categories[0]?.name} / ${categories[1]?.name} / ${categories[2]?.name} / 
-      ${professions[0]?.name}`}</p>
+      >{`${categories[0]?.name} / ${categories[1]?.name} / ${categories[2]?.name} `}</p>
+
+      <p className={s.professions}>{`${professions[0]?.name}`}</p>
 
       <img
         src={`https://img.youtube.com/vi/${youtubeID}/0.jpg`}

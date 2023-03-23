@@ -28,7 +28,6 @@ export default function App() {
       search: path,
       filters: [],
     };
-    // console.log(data);
     sendData(data, setVideos);
     setInputValue(path);
   }, [location]);
@@ -43,7 +42,6 @@ export default function App() {
       search: inputValue,
       filters: checkedInputs,
     };
-    console.log(data);
     sendData(data, setVideos);
   }, [inputValue]);
 
