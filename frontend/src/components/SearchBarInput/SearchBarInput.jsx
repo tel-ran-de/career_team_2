@@ -1,46 +1,46 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { categories } from "../../data/categories";
-import debounce from "lodash.debounce";
+import React, { useState, useCallback } from "react";
+import { debounce } from "lodash";
 import s from './index.module.css'
 
 
 export default function SearchBarInput() {
 
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState([]);
+    const [selectedTerm, setSelectedTerm] = useState('');
 
-    let listToDisplay = categories;
+    const handleChange = useCallback(debounce((value) => {
+        fetch(`http://localhost:8080/profession?search=${value}`)
+            .then((res) => res.json())
+            .then((data) => setSearchTerm(data))
+            .catch((error) => console.log(error))
+    }, 200), [fetch, setSearchTerm]);
 
-    const handleChange = useCallback((el) => {
-        setSearchTerm(el.target.value);
-    }, []);
-
-    const renderVideoList = () => {
-        return listToDisplay.map((category, i) => <p key={i}>{category}</p>);
-    };
-
-    if (searchTerm !== "") {
-        listToDisplay = categories.filter((category) => {
-            return category.includes(searchTerm);
-        });
+    const handleSelect = (el) => {
+        setSelectedTerm(el);
+        setSearchTerm([]);
     }
-
-    const debouncedResults = useMemo(() => {
-        return debounce(handleChange, 200);
-    }, [handleChange]);
-
-    useEffect(() => {
-        return () => {
-            debouncedResults.cancel();
-        };
-    }, [debouncedResults]);
 
     return (
         <div>
             <input
-                className={s.search}
                 type="text"
-                onChange={debouncedResults} />
-            {renderVideoList()}
+                className={s.search}
+                placeholder="Search"
+                onChange={(el) => handleChange(el.target.value)}
+                value={selectedTerm !== null ? selectedTerm : ''}
+            />
+            <button className={s.btn_search}>Search</button>
+            {
+                searchTerm.length > 0 && (
+                    <div className={s.autocomplete}>
+                        {searchTerm.map((el, index) => (
+                            <div key={index} className={s.autocompleteItems} onClick={() => handleSelect(el.name)}>
+                                <span>{el.name}</span>
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
         </div>
     )
 }
