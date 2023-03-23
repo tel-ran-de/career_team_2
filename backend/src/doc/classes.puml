@@ -1,0 +1,84 @@
+@startuml
+
+package entity{
+    class Video {
+        -videoId: long
+        -videoURL: String
+        -name: String
+        -date: date
+        -length: int
+        -preview: Text
+        -categories: Set
+        -professions: Set
+    }
+
+    class Category {
+        -categoryId: long
+        -name: String
+        -categoryType: CategoryType
+    }
+
+    class CategoryType {
+        -categoryTypeId: long
+        -name: String
+        }
+
+    class Profession {
+        -id: long
+        -name: String
+        }
+
+    Category -- CategoryType
+}
+newpage
+package controller {
+    class VideoController {
+    <<RESTController>>
+        List<Video> getAllVideo()
+        List<Video> listAllVideo(@RequestBody String body)
+        List<Category> getAllCategories()
+        List<CategoryType> getAllCategoryTypes()
+    }
+
+    class ProfessionController {
+    <<RESTController>>
+        List<Profession> getAllProfession()
+        List<Profession> searchProfessionByName(@PathParam("name") String name)
+    }
+
+    class ForwardController {
+    <<Controller>>
+        String index()
+    }
+}
+newpage
+package repository{
+    interface VideoRepository extends JpaRepository{
+        List<Video> findByNameContaining(String name)
+        List<Video> findVideoIdByCategoryIds(@Param("ids") Set<Long> ids)
+    }
+    interface CategoryRepository extends JpaRepository{
+        List<Category> allCategories();
+    }
+    interface CategoryTypeRepository extends JpaRepository{
+
+    }
+    interface ProfessionRepository extends JpaRepository{
+        List<Profession> findByNameContains(String name);
+    }
+
+}
+newpage
+package config {
+    class SwaggerConfig {
+        OpenAPI apiInfo()
+    }
+}
+
+package utils {
+    class Body {
+        search: String
+        filters: Long[]
+    }
+}
+@enduml
