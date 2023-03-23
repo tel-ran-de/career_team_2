@@ -1,11 +1,13 @@
+import { domain } from "./domain";
+
 export const getVideos = (callback) => {
-  fetch("/video")
+  fetch(`${domain}/video`)
     .then((res) => res.json())
     .then(callback);
 };
 
 export const getCategoryTypes = (setCategoryTypes) => {
-  fetch("/category_types")
+  fetch(`${domain}/category_types`)
     .then((res) => res.json())
     .then(setCategoryTypes);
 };
@@ -15,7 +17,7 @@ export const getCategories = (
   setCategories2,
   setCategories3
 ) => {
-  fetch("/category")
+  fetch(`${domain}/category`)
     .then((res) => res.json())
     .then((res) => {
       setCategories1(res.filter((e) => e.categoryType.id === 1));

@@ -4,20 +4,20 @@ import Input from "../../UI/Input";
 import debounce from "lodash.debounce";
 import s from "./index.module.scss";
 import Button from "../../UI/Button";
+import { domain } from "../../requests/domain";
 
 export default function HeaderForm() {
   const [searchTerm, setSearchTerm] = useState("");
-  const { setInputValue, search2 } = useContext(Context);
+  const { inputValue, setInputValue, search } = useContext(Context);
   const inputRef = useRef();
 
   const handleChange = useCallback(
     debounce((value) => {
-      fetch(`/profession/search?name=${value}`)
+      fetch(`${domain}/profession/search?name=${value}`)
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data);
           setSearchTerm(data);
-          setInputValue(data);
+          setInputValue(inputRef.current.value);
         })
         .catch((error) => console.log(error));
     }, 200),
@@ -26,6 +26,7 @@ export default function HeaderForm() {
 
   const handleSelect = (el) => {
     inputRef.current.value = el;
+    setInputValue(inputRef.current.value);
     setSearchTerm([]);
   };
 
@@ -36,8 +37,10 @@ export default function HeaderForm() {
           type="text"
           className={s.search}
           ref={inputRef}
-          placeholder="Search"
+          placeholder={inputValue ? inputValue : "Search"}
           onChange={(el) => handleChange(el.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && search(e)}
+          defaultValue={inputValue}
         />
         {searchTerm.length > 0 && (
           <div className={s.autocomplete}>
@@ -53,7 +56,7 @@ export default function HeaderForm() {
           </div>
         )}
       </div>
-      <Button onClick={search2}>Search</Button>
+      <Button onClick={search}>Search</Button>
     </div>
   );
 }

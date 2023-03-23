@@ -1,6 +1,6 @@
 import Modal from '../Modal';
 import VideosContainer from '../VideosContainer';
-import MainContentForm from '../MainContentForm';
+import MainContentForm from '../FilterMenu';
 import { VscRunAll } from 'react-icons/vsc';
 import s from './index.module.scss';
 

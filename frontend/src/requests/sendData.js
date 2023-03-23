@@ -1,5 +1,7 @@
+import { domain } from "./domain";
+
 export const sendData = (data, callback) => {
-  fetch("/video", {
+  fetch(`${domain}/video`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",

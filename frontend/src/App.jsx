@@ -28,10 +28,12 @@ export default function App() {
       search: path,
       filters: [],
     };
+    setInputValue(path);
     sendData(data, setVideos);
   }, [location]);
 
-  const search2 = useCallback(() => {
+  const search = useCallback((event) => {
+    event.preventDefault();
     const inputs = document.querySelectorAll("input");
     const checkedInputs = [];
     inputs.forEach((e, idx) => {
@@ -42,38 +44,11 @@ export default function App() {
       filters: checkedInputs,
     };
     console.log(data);
-    // sendData(data, setVideos);
+    sendData(data, setVideos);
   }, [inputValue]);
-
-  const search = useCallback(
-    (e) => {
-      e.preventDefault();
-      const checkedInputs = [];
-      for (let i = 0; i < e.target.length - 1; i++) {
-        if (e.target[i].checked === true) {
-          checkedInputs.push(parseInt(e.target[i].id));
-        }
-      }
-      const data = {
-        search: inputValue,
-        filters: checkedInputs,
-      };
-      console.log(data);
-      sendData(data, setVideos);
-    },
-    [inputValue]
-  );
-
-  // const test = () => {
-  //   const inputs = document.querySelectorAll("input");
-  //   inputs.forEach((e, i) => {
-  //     if (i !== 0 && e.checked) console.log(e.id);
-  //   });
-  // };
-
+  
   return (
     <>
-      {/* <button onClick={test}>Test</button> */}
       <Context.Provider
         value={{
           videoSource,
@@ -83,8 +58,8 @@ export default function App() {
           search,
           videos,
           setVideos,
+          inputValue,
           setInputValue,
-          search2,
         }}
       >
         <Nav />
