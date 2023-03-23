@@ -12,4 +12,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     @Query(value = "SELECT cat.ID, cat.NAME, cat.CATEGORY_TYPE_ID, ct.NAME AS CATEGORY_TYPE_NAME FROM CATEGORY cat LEFT JOIN CATEGORY_TYPE ct ON cat.CATEGORY_TYPE_ID=ct.ID", nativeQuery = true)
     public List<Category> allCategories();
 
+
+
 }

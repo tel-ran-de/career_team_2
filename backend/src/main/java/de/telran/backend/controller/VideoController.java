@@ -1,5 +1,7 @@
 package de.telran.backend.controller;
 
+import com.google.gson.Gson;
+import de.telran.backend.utils.Body;
 import de.telran.backend.entity.Category;
 import de.telran.backend.entity.CategoryType;
 import de.telran.backend.entity.Video;
@@ -10,13 +12,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -33,10 +31,45 @@ public class VideoController {
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
 
-    @PostMapping("/video")
-    public List<Video> listAllVideo() {
+
+    @GetMapping("/video")
+    public List<Video> getAllVideo() {
         List<Video> all = new ArrayList<>();
         videoRepository.findAll().forEach(all::add);
+        log.info(all.toString());
+        return all;
+    }
+
+    @PostMapping("/video")
+    public List<Video> listAllVideo(@RequestBody String body)
+    {
+        log.info(body);
+        Gson gson = new Gson();
+        Body bodyJson = gson.fromJson(body, Body.class);
+
+        List<Video> all = new ArrayList<>();
+        String search = bodyJson.search;
+        if (search.equals("")){
+            all = videoRepository.findAll();
+        }
+        else {
+            all = videoRepository.findByNameContaining(search);
+        }
+        if (bodyJson.filters.length != 0){
+            if (search.equals("")){
+                all = new ArrayList<>();
+            }
+            Set<Long> setFilters = new HashSet<Long>(Arrays.asList(bodyJson.filters));
+            List<Video> videoByFilters = videoRepository.findVideoIdByCategoryIds(setFilters);
+
+            for (Video video : videoByFilters) {
+
+                if (!all.contains(video)) {
+                    all.add(video);
+                }
+            }
+        }
+
         log.info(all.toString());
         return all;
     }
