@@ -4,7 +4,6 @@ import s from "./index.module.scss";
 import { Context } from "../../context";
 import { useContext, useCallback, useEffect } from "react";
 import { getCategories, getCategoryTypes } from "../../requests/getData";
-import { Link } from "react-router-dom";
 
 export default function MainContentForm() {
   const { search } = useContext(Context);

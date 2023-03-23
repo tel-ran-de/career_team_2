@@ -18,10 +18,9 @@ export default function HeaderForm() {
         .then((data) => {
           setSearchTerm(data);
           setInputValue(inputRef.current.value);
-          search();
         })
         .catch((error) => console.log(error));
-    }, 200),
+    }, 100),
     [setSearchTerm]
   );
 

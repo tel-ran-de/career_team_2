@@ -28,7 +28,7 @@ export default function App() {
       search: path,
       filters: [],
     };
-    console.log(data);
+    // console.log(data);
     sendData(data, setVideos);
     setInputValue(path);
   }, [location]);

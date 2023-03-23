@@ -3,7 +3,7 @@ import { Context } from "../../context";
 import { useContext, useCallback } from "react";
 import { FaPlay } from "react-icons/fa";
 
-export default function Video({ videoURL }) {
+export default function Video({ videoURL, name, categories, professions }) {
   const { setSource, setModal } = useContext(Context);
 
   const openVideo = useCallback(() => {
@@ -18,11 +18,17 @@ export default function Video({ videoURL }) {
       <div className={s.play_icon}>
         <FaPlay color="red" size={46} />
       </div>
+      <p
+        className={s.categories}
+      >{`${categories[0]?.name} / ${categories[1]?.name} / ${categories[2]?.name} / 
+      ${professions[0]?.name}`}</p>
 
       <img
         src={`https://img.youtube.com/vi/${youtubeID}/0.jpg`}
         alt="video-link"
       />
+
+      <h4 className={s.title}>{name}</h4>
     </div>
   );
 }

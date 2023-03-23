@@ -18,13 +18,13 @@ export default function VideosContainer() {
           <Video key={e.videoId} {...e} />
         ))}
       </div>
-
       <div className={s.button}>
         {sliceCnt < videos.length && (
           <Button onClick={showMore}>Show more</Button>
         )}
         {sliceCnt > 6 && <Button onClick={showLess}>Show less</Button>}
       </div>
+      {videos.length === 0 && <h2>no videos found &nbsp;&#128532;</h2>}
     </div>
   );
 }
