@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { debounce } from "lodash";
 import s from './index.module.css'
 
@@ -6,7 +6,7 @@ import s from './index.module.css'
 export default function SearchBarInput() {
 
     const [searchTerm, setSearchTerm] = useState([]);
-    const [selectedTerm, setSelectedTerm] = useState('');
+    const inputRef = useRef()
 
     const handleChange = useCallback(debounce((value) => {
         fetch(`http://localhost:8080/profession?search=${value}`)
@@ -16,7 +16,7 @@ export default function SearchBarInput() {
     }, 200), [fetch, setSearchTerm]);
 
     const handleSelect = (el) => {
-        setSelectedTerm(el);
+        inputRef.current.value = el
         setSearchTerm([]);
     }
 
@@ -25,9 +25,9 @@ export default function SearchBarInput() {
             <input
                 type="text"
                 className={s.search}
+                ref={inputRef}
                 placeholder="Search"
                 onChange={(el) => handleChange(el.target.value)}
-                value={selectedTerm !== null ? selectedTerm : ''}
             />
             <button className={s.btn_search}>Search</button>
             {
