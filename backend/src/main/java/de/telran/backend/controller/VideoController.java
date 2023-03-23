@@ -1,6 +1,8 @@
 package de.telran.backend.controller;
 
 import com.google.gson.Gson;
+import de.telran.backend.entity.Profession;
+import de.telran.backend.repository.ProfessionRepository;
 import de.telran.backend.utils.Body;
 import de.telran.backend.entity.Category;
 import de.telran.backend.entity.CategoryType;
@@ -31,6 +33,8 @@ public class VideoController {
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
 
+    @Autowired
+    private ProfessionRepository professionRepository;
 
     @GetMapping("/video")
     public List<Video> getAllVideo() {
@@ -53,7 +57,33 @@ public class VideoController {
             all = videoRepository.findAll();
         }
         else {
-            all = videoRepository.findByNameContaining(search);
+            all = videoRepository.findByNameContainingIgnoreCase(search);
+
+            List<String> searchArray = Arrays.stream(search.split(" ")).toList();
+            log.info("array " + searchArray.toString());
+
+            Set<Long> searchProfessionIds = new HashSet<>();
+            for (String searchString:searchArray) {
+                log.info("searching... "+ searchString);
+                for (Profession searchProfession: professionRepository.findByNameContainsIgnoreCase(searchString)) {
+                    if (!searchProfessionIds.contains(searchProfession.getId())){
+                        searchProfessionIds.add(searchProfession.getId());
+                    }
+                }
+            }
+
+            log.info("Find ids: "+ searchProfessionIds.toString());
+            List<Video> videoByProfessionIds = videoRepository.findVideoByProfessionIds(searchProfessionIds);
+
+            for (Video video : videoByProfessionIds) {
+
+                if (!all.contains(video)) {
+                    all.add(video);
+                }
+            }
+
+            log.info("All " + all.toString());
+
         }
         if (bodyJson.filters.length != 0){
             if (search.equals("")){

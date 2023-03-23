@@ -61,7 +61,8 @@ public class ProfessionController {
         List<Profession> searchResult = new ArrayList<>();
 
         if (name != "") {
-            searchResult = professionRepository.findByNameContains(name);
+            searchResult = professionRepository.findByNameContainsIgnoreCase(name);
+            // get the first 5 or fewer results
             List<Profession> top5SearchResult = new ArrayList<>();
             int n = 5;
             if (searchResult.size()<n){

@@ -12,10 +12,13 @@ import java.util.Set;
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Long> {
 
-    List<Video> findByNameContaining(String name);
+    List<Video> findByNameContainingIgnoreCase(String name);
 
 //    @Query("SELECT VIDEO_ID FROM VIDEO_CATEGORY WHERE CATEGORY_ID IN :ids")
     @Query(value = "SELECT * FROM VIDEO v LEFT JOIN VIDEO_CATEGORY vc ON v.ID=vc.VIDEO_ID WHERE vc.CATEGORY_ID IN :ids", nativeQuery = true)
     List<Video> findVideoIdByCategoryIds(@Param("ids") Set<Long> ids);
+
+    @Query(value = "SELECT * FROM VIDEO v LEFT JOIN VIDEO_PROFESSION vp ON v.ID=vp.VIDEO_ID WHERE vp.PROFESSION_ID IN :ids", nativeQuery = true)
+    List<Video> findVideoByProfessionIds(@Param("ids") Set<Long> ids);
 
 }
