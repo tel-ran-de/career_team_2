@@ -85,6 +85,11 @@
 			<version>5.2.4.Final</version>
 		</dependency>
 
+		<!-- thymeleaf - template -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 
 	</dependencies>
 
