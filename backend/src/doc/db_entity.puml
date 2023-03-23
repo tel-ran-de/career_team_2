@@ -1,0 +1,50 @@
+@startuml
+package "database entity"{
+    entity Video {
+        *videoId: long
+        *videoURL: String
+        *name: String
+        date: date
+        length: int
+        preview: Text
+        categories: Set
+        professions: Set
+    }
+
+    entity Category {
+        *categoryId: long
+        *name: String
+        categoryType: CategoryType
+    }
+
+    entity CategoryType {
+        *categoryTypeId: long
+        *name: String
+        }
+
+    entity Video_Category {
+            *id: long
+            *video_id: Long
+            *category_id: Long
+            }
+
+    entity Profession {
+        *id: long
+        *name: String
+        }
+
+    entity Video_Profession {
+            *id: long
+            *video_id: Long
+            *profession_id: Long
+            }
+
+
+    Video_Category   }|..o Video
+    CategoryType ||---o Category
+    Video_Category   }|..o Category
+    Video_Profession   }|..o Video
+    Video_Profession   }|..o Profession
+
+}
+@enduml

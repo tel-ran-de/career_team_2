@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant Page
+participant Server
+database H2
+User -> Page: Open page
+Page -> Server: Request (GET) the list \nof random video
+Server -> H2: Query the list of video
+H2-> Server: Return query results
+Server -> Page: Response with the list of video
+Page-> User: Show the results on the page
+
+User -> Page: Enter letters in input box
+Page -> Server: Request (GET) the list of profession \nlike entered letters
+Server-> H2: Query with parameters
+H2->Server: Return query results
+Server -> Page: Response with the list \nof professions
+Page -> User: Show the hint with professions \nlike entered letters
+
+@enduml

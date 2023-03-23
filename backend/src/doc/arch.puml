@@ -1,0 +1,29 @@
+@startuml
+actor User
+cloud Web
+node Frontend{
+    rectangle React{
+        folder js
+        folder html
+        folder css
+    }
+}
+node Backend{
+    rectangle Java{
+        rectangle SpringBoot
+        rectangle Maven
+        rectangle JDK_19
+        rectangle JavaDoc
+    }
+    database H2
+    rectangle Swagger
+}
+
+User <--right-->Web :http:80
+Web  <---right---->Frontend :http:3000
+Frontend <-right->Backend :http:8080 (Rest API - GET/POST)
+
+Java <-->H2
+Java --->Swagger :http:8080
+
+@enduml
