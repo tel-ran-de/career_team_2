@@ -20,7 +20,7 @@ export default function HeaderForm() {
           setInputValue(inputRef.current.value);
         })
         .catch((error) => console.log(error));
-    }, 200),
+    }, 100),
     [setSearchTerm]
   );
 
