@@ -8,7 +8,11 @@ import org.springframework.aop.target.LazyInitTargetSource;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Сlass describes a type of the category
+ * @author Ivan Zamula, Anna Etzler
+ * @version 1.0
+ */
 @Entity
 @Table(name="category_type")
 @Data

@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Value;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * Сlass describes the video
+ * @author Ivan Zamula, Anna Etzler
+ * @version 1.0
+ */
 @Entity
 @Table(name="video")
 @Data

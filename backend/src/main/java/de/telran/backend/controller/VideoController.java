@@ -9,7 +9,6 @@ import de.telran.backend.repository.CategoryRepository;
 import de.telran.backend.repository.CategoryTypeRepository;
 import de.telran.backend.repository.VideoRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,7 @@ public class VideoController {
 
     @Autowired
     private CategoryTypeRepository categoryTypeRepository;
+
 
     @GetMapping("/video")
     public List<Video> getAllVideo() {
