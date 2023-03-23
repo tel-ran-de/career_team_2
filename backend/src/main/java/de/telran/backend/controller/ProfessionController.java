@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class describes the behavior of the controller, works with the list of professions
+ * @author Ivan Zamula, Anna Etzler
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/profession")
 @CrossOrigin
@@ -22,10 +27,16 @@ import java.util.List;
 public class ProfessionController {
     private static final Logger log = LoggerFactory.getLogger(VideoController.class);
 
+
     @Autowired
     private ProfessionRepository professionRepository;
 
-
+    /**
+     * Method queries the list of professions from the database and returns it
+     * @return returns the list of all professions
+     * @author Ivan Zamula, Anna Etzler
+     * @version 1.0
+     */
     @GetMapping("")
     public List<Profession> getAllProfession() {
         List<Profession> allProfession = new ArrayList<>();
@@ -33,6 +44,14 @@ public class ProfessionController {
         log.info(allProfession.toString());
         return allProfession;
     }
+
+    /**
+     * Method searches for a profession by name
+     * @param  name of profession
+     * @author Ivan Zamula, Anna Etzler
+     * @version 1.0
+     * @return returns the list of profession by name
+     */
 
     @GetMapping("/search")
     public List<Profession> searchProfessionByName(

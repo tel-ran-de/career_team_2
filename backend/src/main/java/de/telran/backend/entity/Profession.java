@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/**
+ * Сlass describes the profession
+ * @author Ivan Zamula, Anna Etzler
+ * @version 1.0
+ */
 @Entity
 @Table(name="profession")
 @Data
