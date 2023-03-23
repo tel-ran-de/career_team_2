@@ -46,7 +46,7 @@ public class Video {
     @NotEmpty
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "video_profession",
-            joinColumns = { @JoinColumn(name = "id") },
+            joinColumns = { @JoinColumn(name = "video_id") },
             inverseJoinColumns = { @JoinColumn(name = "profession_id") })
     private Set<Profession> professions = new HashSet<Profession>();
 
