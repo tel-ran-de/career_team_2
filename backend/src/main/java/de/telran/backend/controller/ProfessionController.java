@@ -43,6 +43,15 @@ public class ProfessionController {
 
         if (name != "") {
             searchResult = professionRepository.findByNameContains(name);
+            List<Profession> top5SearchResult = new ArrayList<>();
+            int n = 5;
+            if (searchResult.size()<n){
+                n = searchResult.size();
+            }
+            for (int i = 0; i < n; i++) {
+                top5SearchResult.add(searchResult.get(i));
+            }
+            searchResult = top5SearchResult;
             log.info("Found profession by name " + searchResult.toString());
         }
 
