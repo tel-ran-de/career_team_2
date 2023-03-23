@@ -47,15 +47,17 @@ export default function HeaderForm() {
         />
         {searchTerm.length > 0 && (
           <div className={s.autocomplete}>
-            {searchTerm.map((el, index) => (
-              <div
-                key={index}
-                className={s.autocompleteItems}
-                onClick={() => handleSelect(el.name)}
-              >
-                <span>{el.name}</span>
-              </div>
-            ))}
+            {searchTerm
+              .slice(0, 4)
+              .map((el, index) => (
+                <div
+                  key={index}
+                  className={s.autocompleteItems}
+                  onClick={() => handleSelect(el.name)}
+                >
+                  <span>{el.name}</span>
+                </div>
+              ))}
           </div>
         )}
       </div>
