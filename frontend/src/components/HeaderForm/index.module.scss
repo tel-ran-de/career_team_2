@@ -1,0 +1,60 @@
+.form {
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  // align-items: start; // error в консоле. может align-items: left; ??
+}
+
+.form input {
+  width: 450px;
+  margin-right: 12px;
+}
+
+.form button {
+  height: 34px;
+}
+
+.search {
+  width: 20vw;
+  padding: 8px;
+  font-size: 1.3rem;
+  color: rgb(99, 99, 99);
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.autocomplete {
+  width: 20vw;
+  background: #ffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.autocompleteItems {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+
+.autocompleteItems:hover {
+  background: rgb(228, 226, 226);
+}
+
+@media (max-width: 1200px) {
+  .form input {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form input {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form input {
+    width: 200px;
+  }
+}

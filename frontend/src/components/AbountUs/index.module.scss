@@ -1,0 +1,64 @@
+.abount_us {
+	margin-top: 100px;
+	padding-bottom: 50px;
+	background-color: rgba(36, 28, 21, 0.1);
+}
+
+.abount_us_block h1 {
+	text-align: center;
+	padding: 100px 0;
+	font-weight: 600;
+	font-size: 40px;
+}
+
+.abount_us_container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.abount_us_info {
+	margin-top: 25px;
+}
+
+.abount_us_info div {
+	margin: 20px 0;
+}
+
+.QRcode img {
+	width: 300px;
+}
+
+.logo img {
+	width: 100px;
+	height: 100px;
+}
+
+.abount_us_info button {
+	padding: 10px 15px;
+	a {
+		text-decoration: none;
+		color: white;
+	}
+}
+
+@media (max-width: 480px) {
+	.abount_us_container {
+		display: grid;
+	}
+	.abount_us_info button {
+		margin-bottom: 10px;
+	}
+}
+
+@media (max-width: 768px) {
+	.abount_us_info button {
+		padding: 5px;
+		margin-right: 10px;
+	}
+}
+
+@media (max-width: 1200px) {
+	.abount_us_block h1 {
+		font-size: 30px;
+	}
+}
