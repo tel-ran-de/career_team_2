@@ -15,7 +15,6 @@ export default function HeaderForm() {
       fetch(`/profession/search?name=${value}`)
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data);
           setSearchTerm(data);
           setInputValue(inputRef.current.value);
         })
