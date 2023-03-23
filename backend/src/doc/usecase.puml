@@ -1,0 +1,5 @@
+@startuml
+User --> (Search video for a profession )
+User --> (Filter search results)
+User --> (Join to Telegram)
+@enduml
