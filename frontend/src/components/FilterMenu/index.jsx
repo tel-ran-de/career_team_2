@@ -32,15 +32,19 @@ export default function MainContentForm() {
     getCategories(setCategories1, setCategories2, setCategories3);
   }, []);
 
+  const submit = (event) => {
+    event.preventDefault();
+    search();
+  };
+
   return (
     <div>
-      <Link to="/Day">DEMO LINK</Link>
       <div className={s.button}>
         <Button onClick={checkAll}>Check all</Button>
         <Button onClick={checkNone}>Check none</Button>
       </div>
 
-      <form className={s.checkbox_container} action="" onSubmit={search}>
+      <form className={s.checkbox_container} action="" onSubmit={submit}>
         <h3>Search by {categoryTypes[0] && categoryTypes[0].name}</h3>
 
         {categories1.length > 0 &&

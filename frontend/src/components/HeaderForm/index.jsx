@@ -18,6 +18,7 @@ export default function HeaderForm() {
         .then((data) => {
           setSearchTerm(data);
           setInputValue(inputRef.current.value);
+          search();
         })
         .catch((error) => console.log(error));
     }, 200),
@@ -26,7 +27,7 @@ export default function HeaderForm() {
 
   const handleSelect = (el) => {
     inputRef.current.value = el;
-    setInputValue(inputRef.current.value);
+    setInputValue(el);
     setSearchTerm([]);
   };
 

@@ -28,12 +28,12 @@ export default function App() {
       search: path,
       filters: [],
     };
-    setInputValue(path);
+    console.log(data);
     sendData(data, setVideos);
+    setInputValue(path);
   }, [location]);
 
-  const search = useCallback((event) => {
-    event.preventDefault();
+  const search = useCallback(() => {
     const inputs = document.querySelectorAll("input");
     const checkedInputs = [];
     inputs.forEach((e, idx) => {
@@ -46,7 +46,7 @@ export default function App() {
     console.log(data);
     sendData(data, setVideos);
   }, [inputValue]);
-  
+
   return (
     <>
       <Context.Provider
