@@ -38,10 +38,17 @@
   .play_icon {
     position: absolute;
     z-index: 3;
-    top: 195px;
+    top: 180px;
     left: 115px;
+    opacity: 0;
+    svg {
+      color: green;
+    }
   }
   img {
     width: 260px;
+  }
+  &:hover .play_icon {
+    opacity: 1;
   }
 }
