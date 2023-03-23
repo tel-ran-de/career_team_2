@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { Context } from "./context";
 import { useState, useEffect, useCallback } from "react";
 import { getVideos } from "./requests/getData";
+import { useLocation } from "react-router-dom";
 import { sendData } from "./requests/sendData";
 
 export default function App() {
@@ -15,24 +16,38 @@ export default function App() {
   const [menuActive, setMenuActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [videos, setVideos] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     getVideos(setVideos);
   }, []);
 
-  const search = useCallback((e) => {
-    e.preventDefault();
-    const arr = [];
-    for (let i = 0; i < e.target.length - 1; i++) {
-      if (e.target[i].checked === true) arr.push(parseInt(e.target[i].id));
-    }
+  useEffect(() => {
+    const path = location.pathname.replace("/", "");
     const data = {
-      search: inputValue,
-      filter: arr,
+      search: path,
+      filter: [],
     };
     console.log(data);
     // sendData(data, setVideos);
-  }, [inputValue]);
+  }, [location]);
+
+  const search = useCallback(
+    (e) => {
+      e.preventDefault();
+      const arr = [];
+      for (let i = 0; i < e.target.length - 1; i++) {
+        if (e.target[i].checked === true) arr.push(parseInt(e.target[i].id));
+      }
+      const data = {
+        search: inputValue,
+        filter: arr,
+      };
+      console.log(data);
+      // sendData(data, setVideos);
+    },
+    [inputValue]
+  );
 
   return (
     <>
