@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import Button from "../../UI/Button";
 import s from "./index.module.scss";
 import { Context } from "../../context";
-import { useContext, useCallback } from "react";
+import { useContext, useCallback, useEffect } from "react";
+import { getCategories, getCategoryTypes } from "../../requests/getData";
+import { Link } from "react-router-dom";
 
 export default function MainContentForm() {
+  const { search } = useContext(Context);
+  const [categoryTypes, setCategoryTypes] = useState([]);
+  const [categories1, setCategories1] = useState([]);
+  const [categories2, setCategories2] = useState([]);
+  const [categories3, setCategories3] = useState([]);
   const [showMore1, setShowMore1] = useState(false);
   const [showMore2, setShowMore2] = useState(false);
-  const { search } = useContext(Context);
 
   const checkAll = useCallback(() => {
     document
@@ -21,100 +27,85 @@ export default function MainContentForm() {
       .forEach((e) => (e.checked = false));
   }, []);
 
+  useEffect(() => {
+    getCategoryTypes(setCategoryTypes);
+    getCategories(setCategories1, setCategories2, setCategories3);
+  }, []);
+
   return (
     <div>
+      <Link to="/link">DEMO LINK</Link>
       <div className={s.button}>
         <Button onClick={checkAll}>Check all</Button>
         <Button onClick={checkNone}>Check none</Button>
       </div>
 
       <form className={s.checkbox_container} action="" onSubmit={search}>
-        <h3>Search by majors</h3>
+        <h3>Search by {categoryTypes[0] && categoryTypes[0].name}</h3>
 
-        <p>
-          <input type="checkbox" id="accounting" name="accounting" />
-          <label htmlFor="accounting">accounting</label>
-        </p>
+        {categories1.length > 0 &&
+          categories1.slice(0, 3).map(({ name, categoryId }) => (
+            <p key={categoryId}>
+              <input type="checkbox" id={categoryId} name={categoryId} />
+              <label htmlFor={categoryId}>{name}</label>
+            </p>
+          ))}
 
-        <p>
-          <input type="checkbox" id="marketing" name="marketing" />
-          <label htmlFor="marketing">Marketing</label>
-        </p>
+        {showMore1 &&
+          categories1.length > 0 &&
+          categories1.slice(3).map(({ name, categoryId }) => (
+            <p key={categoryId}>
+              <input type="checkbox" id={categoryId} name={categoryId} />
+              <label htmlFor={categoryId}>{name}</label>
+            </p>
+          ))}
 
-        <p>
-          <input type="checkbox" id="computer_it" name="computer_it" />
-          <label htmlFor="computer_it">Computer and IT systems</label>
-        </p>
-
-        {showMore1 && (
-          <p>
-            <input type="checkbox" id="computer_it2" name="computer_it2" />
-            <label htmlFor="computer_it2">demo</label>
+        {categories1.length > 3 && (
+          <p
+            className={s.show_more}
+            onClick={() => setShowMore1((prev) => !prev)}
+          >
+            show more...
           </p>
         )}
-        <p onClick={() => setShowMore1((prev) => !prev)}>...</p>
-        <h3>Search by industry</h3>
 
-        <p>
-          <input type="checkbox" id="aviation" name="aviation" />
-          <label htmlFor="aviation">Aviation</label>
-        </p>
+        <h3>Search by {categoryTypes[1] && categoryTypes[1].name}</h3>
 
-        <p>
-          <input type="checkbox" id="it_telecom" name="it_telecom" />
-          <label htmlFor="it_telecom">IT and Telecom</label>
-        </p>
+        {categories2.length > 0 &&
+          categories2.slice(0, 3).map(({ name, categoryId }) => (
+            <p key={categoryId}>
+              <input type="checkbox" id={categoryId} name={categoryId} />
+              <label htmlFor={categoryId}>{name}</label>
+            </p>
+          ))}
 
-        <p>
-          <input type="checkbox" id="healthcare" name="healthcare" />
-          <label htmlFor="healthcare">Healthcare</label>
-        </p>
+        {showMore2 &&
+          categories2.length > 0 &&
+          categories2.slice(3).map(({ name, categoryId }) => (
+            <p key={categoryId}>
+              <input type="checkbox" id={categoryId} name={categoryId} />
+              <label htmlFor={categoryId}>{name}</label>
+            </p>
+          ))}
 
-        {showMore2 && (
-          <p>
-            <input type="checkbox" id="computer_it3" name="computer_it3" />
-            <label htmlFor="computer_it3">demo</label>
+        {categories2.length > 3 && (
+          <p
+            className={s.show_more}
+            onClick={() => setShowMore2((prev) => !prev)}
+          >
+            show more...
           </p>
         )}
-        <p onClick={() => setShowMore2((prev) => !prev)}>...</p>
 
-        <h3>Search by company size</h3>
+        <h3>Search by {categoryTypes[2] && categoryTypes[2].name}</h3>
 
-        <p>
-          <input
-            type="checkbox"
-            id="microenterprises"
-            name="microenterprises"
-          />
-          <label htmlFor="microenterprises">Microenterprises</label>
-        </p>
-
-        <p>
-          <input
-            type="checkbox"
-            id="smallenterprises"
-            name="smallenterprises"
-          />
-          <label htmlFor="smallenterprises">Small enterprises</label>
-        </p>
-
-        <p>
-          <input
-            type="checkbox"
-            id="mediumenterprises"
-            name="mediumenterprises"
-          />
-          <label htmlFor="mediumenterprises">Medium-sized enterprises</label>
-        </p>
-
-        <p>
-          <input
-            type="checkbox"
-            id="largeenterprises"
-            name="largeenterprises"
-          />
-          <label htmlFor="largeenterprises">Large enterprises</label>
-        </p>
+        {categories3.length > 0 &&
+          categories3.map(({ name, categoryId }) => (
+            <p key={categoryId}>
+              <input type="checkbox" id={categoryId} name={categoryId} />
+              <label htmlFor={categoryId}>{name}</label>
+            </p>
+          ))}
 
         <div className={s.search_button}>
           <Button>Search</Button>

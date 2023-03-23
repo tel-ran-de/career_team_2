@@ -1,5 +1,5 @@
 export const sendData = (data, callback) => {
-  fetch("/api/filter", {
+  fetch("/video", {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -9,6 +9,6 @@ export const sendData = (data, callback) => {
     .then((res) => res.json())
     .then((res) => {
       console.log(res);
-      // callback(res);
+      callback(res);
     });
 };
