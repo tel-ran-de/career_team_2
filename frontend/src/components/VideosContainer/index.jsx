@@ -9,6 +9,7 @@ export default function VideosContainer() {
   const { videos } = useContext(Context);
 
   const showMore = () => setSliceCnt((prev) => prev + 3);
+  const showLess = () => setSliceCnt(6);
 
   return (
     <div className={s.videos_container}>
@@ -22,6 +23,7 @@ export default function VideosContainer() {
         {sliceCnt < videos.length && (
           <Button onClick={showMore}>Show more</Button>
         )}
+        {sliceCnt > 6 && <Button onClick={showLess}>Show less</Button>}
       </div>
     </div>
   );

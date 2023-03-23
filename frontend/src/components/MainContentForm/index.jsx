@@ -34,7 +34,7 @@ export default function MainContentForm() {
 
   return (
     <div>
-      <Link to="/link">DEMO LINK</Link>
+      <Link to="/Day">DEMO LINK</Link>
       <div className={s.button}>
         <Button onClick={checkAll}>Check all</Button>
         <Button onClick={checkNone}>Check none</Button>

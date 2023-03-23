@@ -8,7 +8,7 @@ export const sendData = (data, callback) => {
   })
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       callback(res);
     });
 };
