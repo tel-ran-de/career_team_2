@@ -6,8 +6,8 @@ import s from "./index.module.scss";
 import Button from "../../UI/Button";
 
 export default function HeaderForm() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { setInputValue, search2 } = useContext(Context);
+  const [searchTerm, setSearchTerm] = useState([]);
+  const { setInputValue, search } = useContext(Context);
   const inputRef = useRef();
 
   const handleChange = useCallback(
@@ -17,7 +17,7 @@ export default function HeaderForm() {
         .then((data) => {
           // console.log(data);
           setSearchTerm(data);
-          setInputValue(data);
+          setInputValue(inputRef.current.value);
         })
         .catch((error) => console.log(error));
     }, 200),
@@ -26,6 +26,7 @@ export default function HeaderForm() {
 
   const handleSelect = (el) => {
     inputRef.current.value = el;
+    setInputValue(inputRef.current.value);
     setSearchTerm([]);
   };
 
@@ -38,6 +39,11 @@ export default function HeaderForm() {
           ref={inputRef}
           placeholder="Search"
           onChange={(el) => handleChange(el.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              search();
+            }
+          }}
         />
         {searchTerm.length > 0 && (
           <div className={s.autocomplete}>
@@ -53,7 +59,7 @@ export default function HeaderForm() {
           </div>
         )}
       </div>
-      <Button onClick={search2}>Search</Button>
+      <Button onClick={search}>Search</Button>
     </div>
   );
 }
