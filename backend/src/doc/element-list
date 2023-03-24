@@ -1,0 +1,6 @@
+de.telran.backend
+de.telran.backend.config
+de.telran.backend.controller
+de.telran.backend.entity
+de.telran.backend.repository
+de.telran.backend.utils
