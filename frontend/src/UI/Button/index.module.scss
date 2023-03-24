@@ -1,10 +1,22 @@
 .button {
-	background-color: #0957cb;
-	color: #ffff;
-	border: 1px solid #0957cb;
-	border-radius: 6px;
-	cursor: pointer;
-	font-weight: 500;
-	font-size: 16px;
-	text-align: center;
+  // background-color: #0957cb;
+  background-color: #0d6efd;
+  color: #ffff;
+  // border: 1px solid #0957cb;
+  border: 1px solid #0d6efd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  &:hover {
+    background-color: #0957cb;
+  }
+}
+
+@media (hover: none) {
+  .button:hover {
+    background-color: #0d6efd;
+    border: 1px solid #0d6efd;
+  }
 }

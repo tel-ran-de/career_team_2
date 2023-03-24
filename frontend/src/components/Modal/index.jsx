@@ -21,7 +21,8 @@ export default function Modal() {
 		setSource('');
 	};
 
-	const videoWidth = window.innerWidth >= 640 ? 640 : window.innerWidth;
+	const videoWidth = window.innerWidth >= 640 ? 680 : window.innerWidth;
+	const videoHeight = window.innerWidth > 480 ? 380 : 270;
 
 	return (
 		<div className={s.modal} style={display}>
@@ -29,18 +30,10 @@ export default function Modal() {
 				<ReactPlayer
 					url={`https://www.youtube.com/watch?v=${videoSource}`}
 					width={videoWidth}
+					height={videoHeight}
 					allowFullScreen
 					controls
 				/>
-				{/* <iframe
-          width={videoWidth}
-          height="480"
-          src={`https://www.youtube.com/embed/${videoSource}`}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          title="Embedded youtube"
-        /> */}
 				<AiOutlineCloseCircle className={s.close_icon} onClick={closeWindow} />
 			</div>
 		</div>

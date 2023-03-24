@@ -4,6 +4,7 @@
 	background-image: url('media/header.png');
 	background-size: cover;
 	background-position: center;
+	max-height: 600px;
 }
 
 .header h1 {
@@ -18,6 +19,12 @@
 	text-align: center;
 }
 
+@media (max-width: 1450px) {
+	.header {
+		max-height: 450px;
+	}
+}
+
 @media (max-width: 768px) {
 	.header h1 {
 		font-size: 30px;
@@ -25,7 +32,11 @@
 }
 
 @media (max-width: 480px) {
+	.header {
+		max-height: 400px;
+	}
 	.header h1 {
 		font-size: 30px;
+		margin-bottom: 50px;
 	}
 }
