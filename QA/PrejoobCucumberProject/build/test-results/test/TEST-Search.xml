@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Search" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-24T14:04:24" hostname="Air-Natalia.fritz.box" time="24.145">
+  <properties/>
+  <testcase name="Positive Search by industry" classname="Search" time="24.145"/>
+  <system-out><![CDATA[
+@Smoke
+Scenario: Positive Search by industry      ?[90m# src/test/resources/features/Search.feature:9?[0m
+  ?[32mGiven ?[0m?[32mNavigate to Home Page?[0m              ?[90m# steps.SearchSteps.SearchProfessionData()?[0m
+  ?[32mGiven ?[0m?[32mSearch by industry?[0m                 ?[90m# steps.SearchSteps.SearchIndustryData()?[0m
+  ?[32mWhen ?[0m?[32mwe click on the search field 1?[0m      ?[90m# steps.SearchSteps.ClickOnTheSearchField1()?[0m
+  ?[32mThen ?[0m?[32mSee a video of Quantitative Analyst?[0m ?[90m# steps.SearchSteps.seeVideoQuantitativeAnalyst()?[0m
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 111.0.5563.64 (c710e93d5b63b7095afe8c2c17df34408078439d-refs/branch-heads/5563@{#995}) on port 26702
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+März 24, 2023 3:04:42 NACHM. org.openqa.selenium.remote.ProtocolHandshake createSession
+INFORMATION: Detected dialect: W3C
+]]></system-err>
+</testsuite>
