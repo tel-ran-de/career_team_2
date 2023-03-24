@@ -1,12 +1,11 @@
 import Modal from "../Modal";
 import { useEffect } from "react";
 import VideosContainer from "../VideosContainer";
-import MainContentForm from "../FilterMenu";
+import FilterMenu from "../FilterMenu";
 import { TfiAngleRight } from "react-icons/tfi";
 import s from "./index.module.scss";
 
 export default function MainContent({ menuActive, setMenuActive }) {
-	
   useEffect(() => {
     document.body.style.overflow = menuActive ? "hidden" : "auto";
     return () => {
@@ -23,7 +22,7 @@ export default function MainContent({ menuActive, setMenuActive }) {
         />
 
         <div className={s.menu_list}>
-          <MainContentForm />
+          <FilterMenu />
         </div>
       </div>
       <div>
