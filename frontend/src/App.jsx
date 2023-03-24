@@ -25,7 +25,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const path = location.pathname.replace("/", "");
+    const path = location.pathname.replace("/", "").replace("%20", " ");
     const data = {
       search: path,
       filters: [],
@@ -47,7 +47,7 @@ export default function App() {
     };
     setSearchTitle(inputValue);
     sendData(data, setVideos);
-    navigate(inputValue)
+    navigate(inputValue);
   }, [inputValue, navigate]);
 
   return (
