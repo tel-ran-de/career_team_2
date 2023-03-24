@@ -12,7 +12,8 @@
 @media (max-width: 1200px) {
   .main_content {
     display: flex;
-    gap: 10px;
+    gap: 25px;
+    justify-content: space-between;
   }
 }
 
@@ -59,7 +60,7 @@
     display: block;
     font-size: 40px;
     color: rgba(36, 28, 21, 0.5);
-		color: #0d6efd;
+    color: #0d6efd;
     position: absolute;
     right: -35px;
     top: center;

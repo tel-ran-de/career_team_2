@@ -6,7 +6,6 @@ import AbountUs from "./components/AbountUs";
 import Footer from "./components/Footer";
 import { Context } from "./context";
 import { useState, useEffect, useCallback } from "react";
-import { getVideos } from "./requests/getData";
 import { useLocation, useNavigate } from "react-router-dom";
 import { sendData } from "./requests/sendData";
 
@@ -21,18 +20,16 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getVideos(setVideos);
-  }, []);
-
-  useEffect(() => {
     const path = location.pathname.replace("/", "").replace("%20", " ");
     const data = {
       search: path,
       filters: [],
     };
-    sendData(data, setVideos);
-    setInputValue(path);
-    setSearchTitle(path);
+    setTimeout(() => {
+      setInputValue(path);
+      setSearchTitle(path);
+      sendData(data, setVideos);
+    }, 5);
   }, [location]);
 
   const search = useCallback(() => {

@@ -1,11 +1,5 @@
 import { domain } from "./domain";
 
-export const getVideos = (callback) => {
-  fetch(`${domain}/video`)
-    .then((res) => res.json())
-    .then(callback);
-};
-
 export const getCategoryTypes = (setCategoryTypes) => {
   fetch(`${domain}/category_types`)
     .then((res) => res.json())
