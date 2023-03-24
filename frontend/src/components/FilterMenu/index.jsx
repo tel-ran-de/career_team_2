@@ -44,7 +44,7 @@ export default function MainContentForm() {
         <Button onClick={checkNone}>Check none</Button>
       </div>
 
-      <div className={s.checkbox_container} action="" onSubmit={submit}>
+      <form className={s.checkbox_container} action="" onSubmit={submit}>
         <h3>Search by {categoryTypes[0] && categoryTypes[0].name}</h3>
 
         {categories1.length > 0 &&
@@ -69,7 +69,7 @@ export default function MainContentForm() {
             className={s.show_more}
             onClick={() => setShowMore1((prev) => !prev)}
           >
-            show more...
+            {!showMore1 ? "show more..." : "show less..."}
           </p>
         )}
 
@@ -97,7 +97,7 @@ export default function MainContentForm() {
             className={s.show_more}
             onClick={() => setShowMore2((prev) => !prev)}
           >
-            show more...
+              {!showMore2 ? "show more..." : "show less..."}
           </p>
         )}
 
@@ -114,7 +114,7 @@ export default function MainContentForm() {
         <div className={s.search_button}>
           <Button>Search</Button>
         </div>
-      </div>
+      </form>
       <div className={s.links}>
         <h3>Most popular professions:</h3>
         <Link to="Manager">Manager</Link>

@@ -47,7 +47,7 @@ export default function App() {
     };
     setSearchTitle(inputValue);
     sendData(data, setVideos);
-    navigate(inputValue);
+    // navigate(inputValue);
   }, [inputValue, navigate]);
 
   return (
