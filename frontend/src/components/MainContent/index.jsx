@@ -1,27 +1,35 @@
-import Modal from '../Modal';
-import VideosContainer from '../VideosContainer';
-import MainContentForm from '../FilterMenu';
-import { VscRunAll } from 'react-icons/vsc';
-import s from './index.module.scss';
+import Modal from "../Modal";
+import { useEffect } from "react";
+import VideosContainer from "../VideosContainer";
+import MainContentForm from "../FilterMenu";
+import { TfiAngleRight } from "react-icons/tfi";
+import s from "./index.module.scss";
 
 export default function MainContent({ menuActive, setMenuActive }) {
-	return (
-		<div className={['container', s.main_content].join(' ')}>
-			<div>
-				<div className={[s.nav_menu, menuActive ? s.active : ''].join(' ')}>
-					<MainContentForm />
-				</div>
+	
+  useEffect(() => {
+    document.body.style.overflow = menuActive ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = menuActive ? "hidden" : "auto";
+    };
+  }, [menuActive]);
 
-				<VscRunAll
-					className={s.menu_icon}
-					onClick={() => setMenuActive(menuActive ? false : true)}
-				/>
-			</div>
+  return (
+    <div className={["container", s.main_content].join(" ")}>
+      <div className={[s.menu, menuActive ? s.active : ""].join(" ")}>
+        <TfiAngleRight
+          className={s.menu_btn}
+          onClick={() => setMenuActive(menuActive ? false : true)}
+        />
 
-			<div>
-				<Modal />
-				<VideosContainer />
-			</div>
-		</div>
-	);
+        <div className={s.menu_list}>
+          <MainContentForm />
+        </div>
+      </div>
+      <div>
+        <Modal />
+        <VideosContainer />
+      </div>
+    </div>
+  );
 }

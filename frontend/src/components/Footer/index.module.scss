@@ -6,3 +6,10 @@
 	font-size: 14px;
 	color: #796703;
 }
+
+
+@media (max-width: 480px) {
+	.footer {
+		padding: 40px 12px;
+	}
+}

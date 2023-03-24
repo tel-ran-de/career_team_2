@@ -4,6 +4,7 @@ import s from "./index.module.scss";
 import { Context } from "../../context";
 import { useContext, useCallback, useEffect } from "react";
 import { getCategories, getCategoryTypes } from "../../requests/getData";
+import { Link } from "react-router-dom";
 
 export default function MainContentForm() {
   const { search } = useContext(Context);
@@ -43,7 +44,7 @@ export default function MainContentForm() {
         <Button onClick={checkNone}>Check none</Button>
       </div>
 
-      <form className={s.checkbox_container} action="" onSubmit={submit}>
+      <div className={s.checkbox_container} action="" onSubmit={submit}>
         <h3>Search by {categoryTypes[0] && categoryTypes[0].name}</h3>
 
         {categories1.length > 0 &&
@@ -113,7 +114,13 @@ export default function MainContentForm() {
         <div className={s.search_button}>
           <Button>Search</Button>
         </div>
-      </form>
+      </div>
+      <div className={s.links}>
+        <h3>Most popular professions:</h3>
+        <Link to="Manager">Manager</Link>
+        <Link to="IT">IT</Link>
+        <Link to="Finance">Finance</Link>
+      </div>
     </div>
   );
 }

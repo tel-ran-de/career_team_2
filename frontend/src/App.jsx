@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import { Context } from "./context";
 import { useState, useEffect, useCallback } from "react";
 import { getVideos } from "./requests/getData";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { sendData } from "./requests/sendData";
 
 export default function App() {
@@ -15,21 +15,24 @@ export default function App() {
   const [modal, setModal] = useState(false);
   const [menuActive, setMenuActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [searchTitle, setSearchTitle] = useState("");
   const [videos, setVideos] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getVideos(setVideos);
   }, []);
 
   useEffect(() => {
-    const path = location.pathname.replace("/", "");
+    const path = location.pathname.replace("/", "").replace("%20", " ");
     const data = {
       search: path,
       filters: [],
     };
     sendData(data, setVideos);
     setInputValue(path);
+    setSearchTitle(path);
   }, [location]);
 
   const search = useCallback(() => {
@@ -42,8 +45,10 @@ export default function App() {
       search: inputValue,
       filters: checkedInputs,
     };
+    setSearchTitle(inputValue);
     sendData(data, setVideos);
-  }, [inputValue]);
+    navigate(inputValue);
+  }, [inputValue, navigate]);
 
   return (
     <>
@@ -58,6 +63,8 @@ export default function App() {
           setVideos,
           inputValue,
           setInputValue,
+          searchTitle,
+          setSearchTitle,
         }}
       >
         <Nav />

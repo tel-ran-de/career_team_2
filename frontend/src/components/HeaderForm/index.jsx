@@ -5,6 +5,7 @@ import debounce from "lodash.debounce";
 import s from "./index.module.scss";
 import Button from "../../UI/Button";
 import { domain } from "../../requests/domain";
+import { Link } from "react-scroll";
 
 export default function HeaderForm() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,7 +33,7 @@ export default function HeaderForm() {
 
   return (
     <div className={s.form}>
-      <div>
+      <div className={s.input_block}>
         <Input
           type="text"
           className={s.search}
@@ -44,7 +45,7 @@ export default function HeaderForm() {
         />
         {searchTerm.length > 0 && (
           <div className={s.autocomplete}>
-            {searchTerm.map((el, index) => (
+            {searchTerm.slice(0, 4).map((el, index) => (
               <div
                 key={index}
                 className={s.autocompleteItems}
@@ -56,7 +57,16 @@ export default function HeaderForm() {
           </div>
         )}
       </div>
-      <Button onClick={search}>Search</Button>
+
+      <Link
+        to="videos_container"
+        spy={true}
+        smooth={true}
+        offset={-50}
+        duration={600}
+      >
+        <Button onClick={search}>Search</Button>
+      </Link>
     </div>
   );
 }
