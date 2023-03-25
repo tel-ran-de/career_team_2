@@ -1,0 +1,14 @@
+/app/src/main/java/de/telran/backend/config/SwaggerConfig.java
+/app/src/main/java/de/telran/backend/repository/VideoRepository.java
+/app/src/main/java/de/telran/backend/entity/Video.java
+/app/src/main/java/de/telran/backend/entity/Profession.java
+/app/src/main/java/de/telran/backend/repository/CategoryRepository.java
+/app/src/main/java/de/telran/backend/repository/ProfessionRepository.java
+/app/src/main/java/de/telran/backend/utils/Body.java
+/app/src/main/java/de/telran/backend/controller/ProfessionController.java
+/app/src/main/java/de/telran/backend/entity/CategoryType.java
+/app/src/main/java/de/telran/backend/controller/ForwardController.java
+/app/src/main/java/de/telran/backend/controller/VideoController.java
+/app/src/main/java/de/telran/backend/entity/Category.java
+/app/src/main/java/de/telran/backend/BackendApplication.java
+/app/src/main/java/de/telran/backend/repository/CategoryTypeRepository.java

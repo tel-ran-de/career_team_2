@@ -1,0 +1,14 @@
+de/telran/backend/entity/CategoryType.class
+de/telran/backend/repository/CategoryTypeRepository.class
+de/telran/backend/BackendApplication.class
+de/telran/backend/controller/ForwardController.class
+de/telran/backend/entity/Profession.class
+de/telran/backend/repository/CategoryRepository.class
+de/telran/backend/repository/VideoRepository.class
+de/telran/backend/utils/Body.class
+de/telran/backend/entity/Video.class
+de/telran/backend/repository/ProfessionRepository.class
+de/telran/backend/config/SwaggerConfig.class
+de/telran/backend/entity/Category.class
+de/telran/backend/controller/VideoController.class
+de/telran/backend/controller/ProfessionController.class

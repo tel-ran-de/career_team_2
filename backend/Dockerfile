@@ -1,4 +1,11 @@
-FROM openjdk:19.0.2-jdk-slim-buster
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:20-ea-4-jdk
+
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]

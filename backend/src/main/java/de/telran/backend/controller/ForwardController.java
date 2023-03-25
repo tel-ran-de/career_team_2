@@ -24,5 +24,11 @@ public class ForwardController {
         return "index.html";
     }
 
+    @RequestMapping("*")
+    public String index2() {
+        log.info("Forward to index.html");
+        return "index.html";
+    }
+
 
 }
